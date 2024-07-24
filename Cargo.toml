@@ -1,0 +1,27 @@
+[package]
+name = "gRPC"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]] # Bin to run the HelloWorld gRPC server
+name = "server"
+path = "src/server.rs"
+
+[[bin]] # Bin to run the HelloWorld gRPC client
+name = "client"
+path = "src/client.rs"
+
+[[bin]]
+name = "db"
+path = "src/db.rs"
+
+[dependencies]
+tonic = "0.12"
+prost = "0.13"
+tokio = { version = "1.0", features = ["macros", "rt-multi-thread"] }
+measurements = "0.11.0"
+rusqlite = { version = "0.31.0", features = ["bundled"]}
+rand = "0.8.5"
+
+[build-dependencies]
+tonic-build = "0.12"

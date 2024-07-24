@@ -1,0 +1,32 @@
+syntax = "proto3";
+package gps;
+
+service GpsDataServer {
+    rpc SendGps (GpsVec) returns (GpsReply);
+}
+
+message GpsReply {
+    string message = 1;
+}
+
+message DbReply {
+    string message = 1;
+}
+
+message GpsData {
+    uint64 uuid = 1;
+    uint64 pitime = 2;
+    uint64 gps_time = 3;
+    uint32 sequence = 4;
+    float lat = 5;
+    float lon = 6;
+    float alt = 7;
+    float speed = 8;
+    float track = 9;
+    uint32 status_nsats_vuc = 10;
+    float hdop = 11;
+}
+
+message GpsVec {
+    repeated GpsData data = 1;
+}

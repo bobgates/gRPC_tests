@@ -1,0 +1,49 @@
+syntax = "proto3";
+package imu;
+
+service ImuDataServer {
+    rpc SendImu  (ImuVec) returns (ImuReply);
+}
+
+message ImuReply {
+    string message = 1;
+}
+
+message DbReply {
+    string message = 1;
+}
+
+message Orientation {
+    float roll = 1;
+    float pitch = 2;
+    float yaw = 3;
+    float heading_accuracy = 4;
+}
+
+message Vector3D {
+    float x = 1;
+    float y = 2;
+    float z = 3;
+}
+
+message Inertial {
+    Orientation pose = 1;
+    Vector3D gyro = 2;
+    Vector3D accel = 3;
+    Vector3D mag = 4;
+
+}
+
+message ImuData {
+    uint32 sequence = 1;
+    uint64 timestamp = 2;
+    Inertial inertial = 3;
+    float pressure = 4;
+    float temperature = 5;
+    float temp_cpu = 6;
+    
+}
+
+message ImuVec {
+    repeated ImuData data = 1;
+}
